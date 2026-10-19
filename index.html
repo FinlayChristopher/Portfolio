@@ -43,31 +43,41 @@
             </li>
             <li>Status and date: Work In Progress, Scoped for 30/11/2026</li>
         </ul>
-        <video src="Media/Hero%20Shot%20for%20Rendering%20Section.mp4" autoplay muted loop playsinline></video>
-
+        <video src="Media/Hero%20Shot%20for%20Rendering%20Section.mp4" autoplay muted loop playsinline controls class="fit-width"></video>
+        <style>
+            .fit-width {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+        </style>
         <!-- One block per feature. Copy for each feature you can show working. -->
         <article>
             <h3>
                 Per-pixel Phong lighting:<h3>
-                    <img src="Media/HLSL.png">
+                    <img src="Media/HLSL.png" controls class="fit-width">
                     <p></p>
                     <pre><code><!-- 10-25 lines of YOUR code, not tutorial boilerplate --></code></pre>
                     <p><!-- Why it is written this way. One decision you made and its trade-off. --></p>
                     <p><!-- A bug you hit and how you found it (RenderDoc, debug view, etc.). --></p>
         </article>
         <article>
-            <h3>Expanding dynamic object capacity:<h3>
-            <p>
-                Problem: I wanted my code ready to generate procedural objects on command. The first step was making my object creation method dynamic. I didn't know what I needed so the first was researching collection types, their pros and cons and contrasting to my context.
-            </p>
-            <p></p>
-                <img src="Media/Problem%20Solving%20VECTORS.png">
-                <p>hi</p>
-                <img src="Media/ProblemSolvingIMGUI.png">
-                <p></p> 
-                <pre><code><!-- 10-25 lines of YOUR code, not tutorial boilerplate --></code></pre>
-                <p><!-- Why it is written this way. One decision you made and its trade-off. --></p>
-                <p><!-- A bug you hit and how you found it (RenderDoc, debug view, etc.). --></p>
+            <h3>
+                Expanding dynamic object capacity:<h3>
+                    <p>
+                        Problem: I wanted my code ready to generate procedural objects on command. The first step was making my object creation method dynamic. I didn't know what I needed so the first was researching collection types, their pros and cons and contrasting to my context.
+                    </p>
+                    <p></p>
+                    <img src="Media/Problem%20Solving%20VECTORS.png" controls class="fit-width">
+                    <p>
+                        IMGUI implementation:
+                    </p>
+                    <p>Note because of the vector we can .size to get the quantity of objects in scene.</p>
+                    <img src="Media/ProblemSolvingIMGUI.png" controls class="fit-width">
+                    <p></p>
+                    <pre><code><!-- 10-25 lines of YOUR code, not tutorial boilerplate --></code></pre>
+                    <p><!-- Why it is written this way. One decision you made and its trade-off. --></p>
+                    <p><!-- A bug you hit and how you found it (RenderDoc, debug view, etc.). --></p>
         </article>
 
         <!-- In progress: a plan, clearly labelled, with a design and a date. Never a fake snippet. -->
@@ -93,12 +103,11 @@
                 </li>
                 <li>Status and date: Work In Progress, Scoped for 30/11/2026</li>
             </ul>
-            <video src="Media/MultiClientCMD.mp4" autoplay muted loop playsinline></video>
+            <video src="Media/MultiClientCMD.mp4" autoplay muted loop playsinline controls class="fit-width"></video>
 
             <article>
                 <h3><!-- e.g. Thread-safe message queue --></h3>
                 <!-- A small diagram of threads and data flow is worth more than a long snippet here -->
-                <img src="media/threads-diagram.png" alt="<!-- -->">
                 <pre><code><!-- your code --></code></pre>
                 <p><!-- The race condition this prevents, and how you know it works. --></p>
             </article>
