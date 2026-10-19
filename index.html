@@ -1,100 +1,135 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device, initial-scale=1" />
+    <title>Finlay Harris, Graphics Programmer</title>
+    <meta name="description" content="Second-year Computer Games Programming student at Staffordshire, seeking a graphics programming placement for 2027-28.">
+</head>
+<body>
+    <header>
+        <h1>Finlay Harris</h1>
+        <p>Graphics programming student, C++ / DirectX 11 / C#. Seeking a 2027-28 placement.</p>
+        <nav>
+            <a href="#rendering">Renderer</a>
+            <a href="#multiplayer">Multiplayer</a>
+            <a href="#earlier">Earlier work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="media/cv.pdf">CV (PDF)</a>
+        </nav>
+    </header>
+    <main>
+        <h2>DirectX 11 Real-Time Renderer</h2>
+        <p>The project uses DirectX 11 to create 3D objects in a scene. This can be used as a foundational tool to apply maths, physics or a game on top of it.</p>
+        <p>Currently it follows the 3D rendering pipeline and HLSL to utilise Phong Lighting techniques and it renders multiples objects using matricies</p>
+        <ul>
+            <li>Language / API: C++, HLSL, ImGUI</li>
+            <li>
+                Features implemented:
+                <ol>
+                    <li>Vertex and index buffers for a textured cube.</li>
+                    <li>Constant buffer containing World/View/Projection, Material, Light, camera position, and time; mapped/updated each frame, </li>
+                    <li>Basic lighting in pixel shader (ambient + diffuse + specular) and camera-aware specular. </li>
+                    <li>Basic input handling.</li>
+                    <li>ImGui integrated.</li>
+                    <li>Typeless depth texture.</li>
+                    <li>Depth-stencil view.</li>
+                    <li>Input layout for position,normals & texcoords.</li>
+                    <li>Rasterizer states (solid and wireframe) with runtime toggle.</li>
+                    <li>HLSL shader pipeline.</li>
+                    <li>(Anisotropic) sampler descriptor is configured and set for pixel shader usage. </li>
+                </ol>
+            </li>
+            <li>Status and date: Work In Progress, Scoped for 30/11/2026</li>
+        </ul>
+        <video src="Media/Hero%20Shot%20for%20Rendering%20Section.mp4" autoplay muted loop playsinline></video>
 
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device, initial-scale=1" />
-        <title>myCustomTitle</title>
-    </head>
-    <body>
-        <h1>Header 1</h1>
-        <h2>Header 2</h2>
-        <h3>Header 3</h3>
-        <h4>Header 4</h4>
-        <h5>Header 5</h5>
-        <h6>Header 6</h6>
+        <!-- One block per feature. Copy for each feature you can show working. -->
+        <article>
+            <h3>
+                Per-pixel Phong lighting:<h3>
+                    <img src="media/HLSL.png">
+                    <p></p>
+                    <pre><code><!-- 10-25 lines of YOUR code, not tutorial boilerplate --></code></pre>
+                    <p><!-- Why it is written this way. One decision you made and its trade-off. --></p>
+                    <p><!-- A bug you hit and how you found it (RenderDoc, debug view, etc.). --></p>
+        </article>
+        <article>
+            <h3>Expanding dynamic object capacity:<h3>
+            <p>
+                Problem: I wanted my code ready to generate procedural objects on command. The first step was making my object creation method dynamic. I didn't know what I needed so the first was researching collection types, their pros and cons and contrasting to my context.
+            </p>
+            <p></p>
+                <img src="media/Problem%20Solving%20VECTORS.png">
+                <p>hi</p>
+                <img src="media/ProblemSolvingIMGUI.png">
+                <p></p> 
+                <pre><code><!-- 10-25 lines of YOUR code, not tutorial boilerplate --></code></pre>
+                <p><!-- Why it is written this way. One decision you made and its trade-off. --></p>
+                <p><!-- A bug you hit and how you found it (RenderDoc, debug view, etc.). --></p>
+        </article>
 
-        <p>
-            This is my <u>first</u> website, I'm <b>extremely</b> nervous >.<
-        </p>
+        <!-- In progress: a plan, clearly labelled, with a design and a date. Never a fake snippet. -->
+        <article>
+            <h3>In progress: <!-- e.g. Shadow mapping --></h3>
+            <p><!-- What it will do, how (two-pass outline or diagram), and the target date. --></p>
+        </article>
 
-        <p>
-            I have <em>nothing</em> to <strong>add</strong> to my <i>portfolio</i>.
-        </p>
-
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever since 1966,
-            when designers at Letraset and James Mosley, the librarian at
-            St Bride Printing Library, took a 1914 Cicero translation and scrambled
-            it to make dummy text for Letraset's Body Type sheets.
-            <hr />
-            It has survived not only many decades, but also the leap into
-            <a href="https://google.com" target="_blank">electronic typesetting</a>, remaining
-            essentially unchanged. It was popularised thanks to these sheets and
-            more recently with desktop publishing software including versions of Lorem Ipsum.
-
-            <hr />
-            Image from source:
-            <img src="https://placehold.co/1200x400" border="10" />
-
-            Image from files:
-            <img src="1200x400.png" border="10" />
-
+        <p><a href="https://github.com/YOUR-NAME/REPO">Source on GitHub</a></p>
+        <!--3. SECOND PROJECT: frame it around what transfers to graphics roles (concurrency) -->
+        <section id="multiplayer">
+            <h2>Multiplayer Networking and Threading Framework</h2>
+            <p>This project uses Monogame & server management applied for a mutliplayer game.</p>
+            <p>Currently it's a crude WIP but the proof of concept is valid.</p>
             <ul>
+                <li>Language / API: C#, Monogame</li>
                 <li>
-                    Apples
-                    <ul>
-                        <li>
-                            Red apples
-                            <ul>
-                                <li>
-                                    green apples
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-
-            <br />
-
-            <ol>
-                <li>
-                    Apples
+                    Features implemented:
                     <ol>
-                        <li>
-                            Red apples
-                            <ul>
-                                <li>
-                                    green apples
-                                </li>
-                            </ul>
-                        </li>
+                        <li>Client server runs on a thread-per-connection concurrency model.</li>
+                        <li>Basic menu screen handling.</li>
                     </ol>
                 </li>
-            </ol>
-        </p>
-        <br />
-        
-        <table border="100" cellpadding="10" cellspacing="0">
-            <tr>
-                <th>tr=table row</th>
-                <th colspan="2">th=table header</th>
-                <th>Columns</th>
-            </tr>
-            <tr>
-                <td rowspan="3">table data tag</td>
-                <td>table cell tag</td>
-                <td>table cell tag</td>
-                <td>table cell tag</td>
-            </tr>
-            <tr>
-                <td>table cell tag</td>
-                <td>table cell tag</td>
-                <td>table cell tag</td>
-            </tr>
-        </table>
+                <li>Status and date: Work In Progress, Scoped for 30/11/2026</li>
+            </ul>
+            <video src="Media/MultiClientCMD.mp4" autoplay muted loop playsinline></video>
 
-    </body>
+            <article>
+                <h3><!-- e.g. Thread-safe message queue --></h3>
+                <!-- A small diagram of threads and data flow is worth more than a long snippet here -->
+                <img src="media/threads-diagram.png" alt="<!-- -->">
+                <pre><code><!-- your code --></code></pre>
+                <p><!-- The race condition this prevents, and how you know it works. --></p>
+            </article>
+
+            <p><a href="https://github.com/YOUR-NAME/REPO">Source on GitHub</a></p>
+        </section>
+
+        <!-- 4. EARLIER WORK: one line and one link each, so it does not compete with the two above -->
+        <section id="earlier">
+            <h2>Earlier work</h2>
+            <ul>
+                <li><a href="https://github.com/FinlayChristopher/Introduction-To-Graphics-Programming">Introduction to Graphics Programming</a></li>
+                <li><a href="https://github.com/FinlayChristopher/Bespoke-Platform-Dev-Framework">Bespoke Platform Development Framework</a> - </li>
+                <li><a href="https://github.com/FinlayChristopher/Mechanics-Prototyping">Mechanics Prototyping</a> - </li>
+            </ul>
+        </section>
+
+        <!-- 5. ABOUT: short, specific, no adjectives you cannot prove -->
+        <section id="about">
+            <h2>About</h2>
+            <p><!-- Course, year, what you are building towards, one non-code fact (e.g. led a team of 12). --></p>
+            <p><!-- Skills as a plain list, each one backed by a project above. --></p>
+        </section>
+        <header>
+            <h3>Contact</h3>
+            <p>
+                <a href="mailto:finlaych1@protonmail.com">Email: finlaych1@protonmail.com</a>
+                <a href="https://github.com/FinlayChristopher">GitHub</a>
+                <a href="https://www.linkedin.com/in/finlay-harris-50378238a/">LinkedIn</a>
+            </p>
+        </header>
+    </main>
+</body>
 </html>
