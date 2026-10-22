@@ -1,0 +1,12 @@
+# The Notes page shows these files, top to bottom, one file name per line.
+# Lines starting with # are ignored, like this one.
+# .md files are read as Markdown, .txt files as plain text.
+# The first file is the top of the page. In every other file, a # heading
+# becomes that write-up's title.
+# Pictures and videos go next to these files: ![what it shows](clip.mp4)
+
+intro.md
+white-window.md
+object-plus-number.md
+squashed-scene.md
+memory-climbing.md

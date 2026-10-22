@@ -1,0 +1,1 @@
+A C# client-server framework where the server gives every connected client its own thread. C# and MonoGame.

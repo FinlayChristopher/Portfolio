@@ -1,152 +1,122 @@
 <!DOCTYPE html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <html lang="en-GB">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device, initial-scale=1" />
-    <title>Finlay Harris, Graphics Programmer</title>
-    <meta name="description" content="Second-year Computer Games Programming student at Staffordshire, seeking a graphics programming placement for 2027-28.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Finlay Harris - graphics programming</title>
+  <meta name="description" content="Second-year Computer Games Programming student at Staffordshire building a DirectX 11 renderer, looking for a graphics programming placement for 2027-28.">
+  <!-- ICON AND LINK PREVIEW (the picture shown when the link is pasted into LinkedIn, Discord or an email) -->
+  <link rel="icon" href="Media/favicon-32.png" type="image/png">
+  <link rel="apple-touch-icon" href="Media/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Finlay Harris - graphics programming">
+  <meta property="og:description" content="Second-year Computer Games Programming student at Staffordshire building a DirectX 11 renderer, looking for a graphics programming placement for 2027-28.">
+  <meta property="og:url" content="https://finlaychristopher.github.io/Portfolio/">
+  <meta property="og:image" content="https://finlaychristopher.github.io/Portfolio/Media/preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="Fonts/silkscreen-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script src="content.js" defer></script>
+  <script src="desktop.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>Finlay Harris</h1>
-        <p>Graphics programming student, C++ / DirectX 11 / C#. Seeking a 2027-28 placement.</p>
-        <nav>
-            <a href="#rendering">Renderer</a>
-            <a href="#multiplayer">Multiplayer</a>
-            <a href="#earlier">Earlier work</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-            <p>
-                <a href="mailto:finlaych1@protonmail.com">Email: finlaych1@protonmail.com</a>
-                <a href="https://github.com/FinlayChristopher">GitHub</a>
-                <a href="https://www.linkedin.com/in/finlay-harris-50378238a/">LinkedIn</a>
-                <a href="Media/cv.pdf">CV (PDF)</a>
-            </p>
-        </nav>
-    </header>
-    <main>
-        <h2>DirectX 11 Real-Time Renderer</h2>
-        <p>The project uses DirectX 11 to create 3D objects in a scene. This can be used as a foundational tool to apply maths, physics or a game on top of it.</p>
-        <p>Currently it follows the 3D rendering pipeline and HLSL to utilise Phong Lighting techniques and it renders multiples objects using matricies</p>
-        <ul>
-            <li>Language / API: C++, HLSL, ImGUI</li>
-            <li>
-                Features implemented:
-                <ol>
-                    <li>Vertex and index buffers for a textured cube.</li>
-                    <li>Constant buffer containing World/View/Projection, Material, Light, camera position, and time; mapped/updated each frame, </li>
-                    <li>Basic lighting in pixel shader (ambient + diffuse + specular) and camera-aware specular. </li>
-                    <li>Basic input handling.</li>
-                    <li>ImGui integrated.</li>
-                    <li>Typeless depth texture.</li>
-                    <li>Depth-stencil view.</li>
-                    <li>Input layout for position,normals & texcoords.</li>
-                    <li>Rasterizer states (solid and wireframe) with runtime toggle.</li>
-                    <li>HLSL shader pipeline.</li>
-                    <li>(Anisotropic) sampler descriptor is configured and set for pixel shader usage. </li>
-                </ol>
-            </li>
-            <li>Actively working on: Procedural Generation (THEN Shadow Mapping)</li>
-            <li>Status and date: Work In Progress, Scoped for 30/11/2026</li>
+
+  <!-- MENU BAR: the same block on every page. Change it in all four files.
+       FIN. is a second Home button.
+       The date and time are added on the right by desktop.js. -->
+  <header class="bar">
+    <a class="fin" href="index.html" aria-label="Home">FIN.</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="notes.html">Notes</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="Media/cv.pdf">CV</a></li>
+        <li><a href="https://github.com/FinlayChristopher">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/finlay-harris-50378238a/">LinkedIn</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- DESKTOP. data-open-at-start lists the windows open when the page loads,
+       separated by spaces. Leave it empty ("") to start with a clear desktop. -->
+  <main class="desk" data-open-at-start="about render">
+    <h1 class="visually-hidden">Finlay Harris</h1>
+
+    <ul class="icons" aria-label="Desktop">
+      <li><a class="icon" href="renderer.html" data-open="render">
+        <svg viewBox="0 0 52 52" aria-hidden="true"><path class="line" d="M26 6 44 16v20L26 46 8 36V16Z M8 16l18 10 18-10 M26 26v20"/></svg>
+        <span>Renderer</span></a></li>
+      <li><a class="icon" href="multiplayer.html" data-open="multiplayer">
+        <svg viewBox="0 0 52 52" aria-hidden="true"><path class="line" d="M3 14h19v15H3Z M30 14h19v15H30Z M12.5 29v6 M7 35h11 M39.5 29v6 M34 35h11"/><path class="line" d="M22 21.5h8" stroke-dasharray="2 2"/></svg>
+        <span>Multiplayer</span></a></li>
+      <li><a class="icon" href="notes.html">
+        <svg viewBox="0 0 52 52" aria-hidden="true"><g transform="rotate(45 26 26)"><path class="line" d="M20 4h12v32H20Z M20 13h12 M20 36l6 10 6-10 M32 7h4v17"/></g></svg>
+        <span>Notes</span></a></li>
+      <li><a class="icon" href="#earlier" data-open="earlier">
+        <svg viewBox="0 0 52 52" aria-hidden="true"><path class="line" d="M5 12h15l4 5h23v26H5Z M5 21h42"/></svg>
+        <span>Prior work</span></a></li>
+      <li><a class="icon" href="#contact" data-open="contact">
+        <svg viewBox="0 0 52 52" aria-hidden="true"><path class="line" d="M5 13h42v27H5Z M5 13l21 15 21-15"/></svg>
+        <span>Contact</span></a></li>
+    </ul>
+
+    <section class="work" aria-label="Work">
+
+      <!-- ABOUT: who I am and the statement of intent, as a text file -->
+      <article class="window notepad" id="about" data-width="440" data-place="right" data-phone="inline" data-title="about.txt">
+        <div class="titlebar"><span class="title">about.txt - Notepad</span><span class="winbuttons"><button type="button" data-action="minimise" aria-label="Minimise about.txt">_</button><button type="button" data-action="maximise" aria-label="Maximise about.txt">&#9633;</button><button type="button" data-action="close" aria-label="Close about.txt">&times;</button></span></div>
+        <div class="padmenu" aria-hidden="true"><span>File</span><span>Edit</span><span>Format</span><span>View</span><span>Help</span></div>
+        <!-- the text comes from Media/about.txt (content.js); the link is for browsers without scripts -->
+        <div class="paper" data-src="Media/about.txt"><p><a href="Media/about.txt">about.txt</a></p></div>
+      </article>
+
+      <article class="window tile lead render" id="render" data-width="900" data-title="Real-Time Render - DirectX 11">
+        <div class="titlebar"><span class="title">Real-Time Render - DirectX 11</span><span class="winbuttons"><button type="button" data-action="minimise" aria-label="Minimise Real-Time Render">_</button><button type="button" data-action="maximise" aria-label="Maximise Real-Time Render">&#9633;</button><button type="button" data-action="close" aria-label="Close Real-Time Render">&times;</button></span></div>
+        <a class="body" href="renderer.html">
+          <div class="viewport">
+            <video src="Media/Hero%20Shot%20for%20Rendering%20Section.mp4" poster="Media/renderer-poster.jpg" muted loop playsinline preload="metadata" aria-label="Lit cubes turning in the renderer"></video>
+          </div>
+          <div class="about">
+            <p data-src="Media/summaries/renderer.txt"></p>
+          </div>
+        </a>
+      </article>
+
+      <article class="window tile" id="multiplayer" data-width="760" data-title="Multiplayer Game - MonoGame">
+        <div class="titlebar"><span class="title">Multiplayer Game - MonoGame</span><span class="winbuttons"><button type="button" data-action="minimise" aria-label="Minimise Multiplayer Game">_</button><button type="button" data-action="maximise" aria-label="Maximise Multiplayer Game">&#9633;</button><button type="button" data-action="close" aria-label="Close Multiplayer Game">&times;</button></span></div>
+        <a class="body" href="multiplayer.html">
+          <div class="viewport">
+            <video src="Media/multiplayer-tile.mp4" poster="Media/multiplayer-thumb.jpg" muted loop playsinline preload="metadata" aria-label="A game client logging in to the server and starting a game"></video>
+          </div>
+          <div class="about">
+            <p data-src="Media/summaries/multiplayer.txt"></p>
+          </div>
+        </a>
+      </article>
+
+      <article class="window folder" id="earlier" data-width="520" data-title="Prior work">
+        <div class="titlebar"><span class="title">Prior work</span><span class="winbuttons"><button type="button" data-action="minimise" aria-label="Minimise Prior work">_</button><button type="button" data-action="maximise" aria-label="Maximise Prior work">&#9633;</button><button type="button" data-action="close" aria-label="Close Prior work">&times;</button></span></div>
+        <!-- PRIOR WORK: the same three links are in the Start menu (desktop.js). -->
+        <ul class="files">
+          <li><a href="https://github.com/FinlayChristopher/Introduction-To-Graphics-Programming"><svg viewBox="0 0 52 52" aria-hidden="true"><path class="line" d="M5 12h15l4 5h23v26H5Z"/></svg>Introduction to Graphics Programming</a></li>
+          <li><a href="https://github.com/FinlayChristopher/Bespoke-Platform-Dev-Framework"><svg viewBox="0 0 52 52" aria-hidden="true"><path class="line" d="M5 12h15l4 5h23v26H5Z"/></svg>Bespoke Platform Development Framework</a></li>
+          <li><a href="https://github.com/FinlayChristopher/Mechanics-Prototyping"><svg viewBox="0 0 52 52" aria-hidden="true"><path class="line" d="M5 12h15l4 5h23v26H5Z"/></svg>Mechanics Prototyping</a></li>
         </ul>
-        <video src="Media/Cubes.mp4" autoplay muted loop playsinline controls class="fit-width"></video>
-        <style>
-            .fit-width {
-                display: block;
-                width: 100%;
-                height: auto;
-            }
-        </style>
-        <!-- One block per feature. Copy for each feature you can show working. -->
-        <article>
-            <h3>
-                Per-pixel Phong lighting:<h3>
-                    <img src="Media/HLSL.png" controls class="fit-width">
-                    <p></p>
-                    <pre><code><!-- 10-25 lines of YOUR code, not tutorial boilerplate --></code></pre>
-                    <p><!-- Why it is written this way. One decision you made and its trade-off. --></p>
-                    <p><!-- A bug you hit and how you found it (RenderDoc, debug view, etc.). --></p>
-        </article>
-        <article>
-            <h3>
-                Expanding dynamic object capacity:<h3>
-                    <p>
-                        Problem: I wanted my code ready to generate procedural objects on command. The first step was making my object creation method dynamic. I didn't know what I needed so the first was researching collection types, their pros and cons and contrasting to my context.
-                    </p>
-                    <p></p>
-                    <img src="Media/Problem%20Solving%20VECTORS.png" controls class="fit-width">
-                    <p>
-                        IMGUI implementation:
-                    </p>
-                    <p>Note because of the vector we can .size to get the quantity of objects in scene.</p>
-                    <img src="Media/ProblemSolvingIMGUI.png" controls class="fit-width">
-                    <p></p>
-                    <pre><code><!-- 10-25 lines of YOUR code, not tutorial boilerplate --></code></pre>
-                    <p><!-- Why it is written this way. One decision you made and its trade-off. --></p>
-                    <p><!-- A bug you hit and how you found it (RenderDoc, debug view, etc.). --></p>
-        </article>
+      </article>
 
-        <!-- In progress: a plan, clearly labelled, with a design and a date. Never a fake snippet. -->
-        <article>
-            <h3>In progress: Procudural Generation</h3>
-            <p><!-- What it will do, how (two-pass outline or diagram), and the target date. --></p>
-        </article>
+      <!-- CONTACT: a text file of ways to reach me -->
+      <article class="window notepad" id="contact" data-width="560" data-title="contact.txt">
+        <div class="titlebar"><span class="title">contact.txt - Notepad</span><span class="winbuttons"><button type="button" data-action="minimise" aria-label="Minimise contact.txt">_</button><button type="button" data-action="maximise" aria-label="Maximise contact.txt">&#9633;</button><button type="button" data-action="close" aria-label="Close contact.txt">&times;</button></span></div>
+        <div class="padmenu" aria-hidden="true"><span>File</span><span>Edit</span><span>Format</span><span>View</span><span>Help</span></div>
+        <!-- the text comes from Media/contact.txt (content.js) -->
+        <div class="paper" data-src="Media/contact.txt"><p><a href="Media/contact.txt">contact.txt</a></p></div>
+      </article>
+    </section>
+  </main>
 
-        <p><a href="https://github.com/YOUR-NAME/REPO">Source on GitHub</a></p>
-        <!--3. SECOND PROJECT: frame it around what transfers to graphics roles (concurrency) -->
-        <section id="multiplayer">
-            <h2>Multiplayer Networking and Threading Framework</h2>
-            <p>This project uses Monogame & server management applied for a mutliplayer game.</p>
-            <p>Currently it's a crude WIP but the proof of concept is valid.</p>
-            <ul>
-                <li>Language / API: C#, Monogame</li>
-                <li>
-                    Features implemented:
-                    <ol>
-                        <li>Client server runs on a thread-per-connection concurrency model.</li>
-                        <li>Basic menu screen handling.</li>
-                    </ol>
-                </li>
-                <li>Status and date: Work In Progress, Scoped for 30/11/2026</li>
-            </ul>
-            <video src="Media/MultiClientCMD.mp4" autoplay muted loop playsinline controls class="fit-width"></video>
-
-            <article>
-                <h3><!-- e.g. Thread-safe message queue --></h3>
-                <!-- A small diagram of threads and data flow is worth more than a long snippet here -->
-                <pre><code><!-- your code --></code></pre>
-                <p><!-- The race condition this prevents, and how you know it works. --></p>
-            </article>
-
-            <p><a href="https://github.com/YOUR-NAME/REPO">Source on GitHub</a></p>
-        </section>
-
-        <!-- 4. EARLIER WORK: one line and one link each, so it does not compete with the two above -->
-        <section id="earlier">
-            <h2>Earlier work</h2>
-            <ul>
-                <li><a href="https://github.com/FinlayChristopher/Introduction-To-Graphics-Programming">Introduction to Graphics Programming</a></li>
-                <li><a href="https://github.com/FinlayChristopher/Bespoke-Platform-Dev-Framework">Bespoke Platform Development Framework</a> - </li>
-                <li><a href="https://github.com/FinlayChristopher/Mechanics-Prototyping">Mechanics Prototyping</a> - </li>
-            </ul>
-        </section>
-
-        <!-- 5. ABOUT: short, specific, no adjectives you cannot prove -->
-        <section id="about">
-            <h2>About</h2>
-            <p><!-- Course, year, what you are building towards, one non-code fact (e.g. led a team of 12). --></p>
-            <p><!-- Skills as a plain list, each one backed by a project above. --></p>
-        </section>
-        <header>
-            <h3>Contact</h3>
-            <p>
-                <a href="mailto:finlaych1@protonmail.com">Email: finlaych1@protonmail.com</a>
-                <a href="https://github.com/FinlayChristopher">GitHub</a>
-                <a href="https://www.linkedin.com/in/finlay-harris-50378238a/">LinkedIn</a>
-                <a href="Media/cv.pdf">CV (PDF)</a>
-            </p>
-        </header>
-    </main>
 </body>
 </html>

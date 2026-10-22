@@ -1,0 +1,665 @@
+/* Portfolio - Finlay Harris
+   Black desktop, white and grey line work, after the PROJECT.EXE reference:
+   no colour at all, so the renders inside the windows are the only colour
+   on the page. One pixel face for everything except code.
+   Silkscreen is drawn on an 0.5rem grid, so its sizes here are 16, 24, 32 and
+   3rem: in-between sizes blur the pixels. */
+
+@font-face {
+  font-family: "Silkscreen";
+  src: url("Fonts/silkscreen-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Silkscreen";
+  src: url("Fonts/silkscreen-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* Sizes are in rem, so the root font size scales the whole site: 100% on
+   phones, 90% on computers (one setting, here). */
+html { font-size: 100%; }
+@media (min-width: 761px) { html { font-size: 90%; } }
+
+:root {
+  --black: #000000;     /* the desktop, and the inside of every window */
+  --white: #FFFFFF;     /* headings, titles, pressed states */
+  --text: #D6D6D6;      /* reading text */
+  --dim: #8E8E8E;       /* secondary text */
+  --frame: rgb(194, 198, 202);  /* window frames and outlines */
+  --line: #3A3A3A;      /* quiet rules */
+
+  --pixel: "Silkscreen", "Courier New", monospace;
+  --code: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --measure: 46rem;
+  --gutter: clamp(1rem, 3vw, 2.5rem);
+  --border: 0.25rem;        /* the one border thickness: window frames, title rules, buttons, dock, menus, tooltips */
+  --dock-button: var(--fin);   /* dock buttons, desktop icons and FIN. are one size */
+  --dock-pad: 0.5rem;
+  --dock: calc(var(--dock-button) + 2 * var(--dock-pad) + 2 * var(--border));   /* the dock's height */
+  --edge: 1rem;         /* space between the menu bar items and the screen edges, top and sides alike */
+  --fin: 3.5rem;          /* the square FIN. mark */
+  --bar: calc(var(--fin) + 2 * var(--edge));   /* height of the menu bar */
+  --gap: var(--edge);   /* space between a full-size window and the menu bar or dock */
+  --icon: var(--fin);   /* desktop icons are the same size as the dock icons and FIN. */
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; background: var(--black); }
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--text);
+  font: 400 1rem/1.75 var(--pixel);
+  -webkit-font-smoothing: none;
+}
+
+a { color: var(--white); text-underline-offset: 0.25em; }
+a:hover { text-decoration-thickness: 0.125rem; }
+:focus-visible { outline: 0.125rem dotted var(--white); outline-offset: 0.1875rem; }
+strong, b { font-weight: 700; }
+
+img, video { display: block; max-width: 100%; height: auto; }
+
+/* line icons: one stroke weight everywhere so they read as a set */
+.line { fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: square; stroke-linejoin: miter; }
+
+/* ---------- Menu bar ---------- */
+/* After the Mac OS X menu bar: a mark at the far left, who this is, and the
+   date and time at the far right, all at one small size. */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  min-height: var(--bar);
+  padding: var(--edge);
+  background: var(--black);
+  line-height: 1.5;
+}
+
+/* the FIN. mark: the site's equivalent of the apple; opens about.txt */
+.fin {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--fin);
+  height: var(--fin);
+  padding: 0;
+  background: var(--black);
+  color: var(--white);
+  border: var(--border) solid var(--white);
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1.25;
+}
+.fin:hover { background: var(--white); color: var(--black); }
+
+.bar .home { color: var(--white); text-decoration: none; }
+
+.bar .clock { margin-left: auto; color: var(--white); white-space: nowrap; }
+
+.bar nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bar nav a { color: var(--text); text-decoration: none; }
+.bar nav { margin-left: auto; }
+.bar nav a:hover, .bar nav a[aria-current="page"] { color: var(--white); text-decoration: underline; }
+
+/* the Start menu carries these links, so the bar drops them when it exists */
+html.has-dock .bar nav { display: none; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Desktop icons ---------- */
+
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 1rem var(--gutter);
+  list-style: none;
+}
+
+.icon {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  width: 7rem;
+  padding: 0.25rem 0;
+  color: var(--white);
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.25;
+}
+.icon svg { width: var(--icon); height: var(--icon); }
+.icon .line { stroke-width: 0.1875rem; vector-effect: non-scaling-stroke; }   /* the dock's weight */
+/* labels may run about 10% past the icon on each side, then end in ... */
+.icon span {
+  max-width: calc(var(--icon) * 1.2 + 0.375rem);   /* + the label's own padding */
+  padding: 1px 0.1875rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* a selected desktop icon: the label inverts and shows in full, as on Windows */
+.icon:hover, .icon:focus-visible { z-index: 1; }
+.icon:hover span, .icon:focus-visible span { max-width: none; overflow: visible; background: var(--white); color: var(--black); }
+.icon:focus-visible { outline: none; }
+
+
+/* ---------- Work (the windows on the home page) ---------- */
+
+.work {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  padding: 0 var(--gutter) 1rem;
+}
+
+/* ---------- Windows ---------- */
+/* A light frame around a black window, a black title bar with outlined
+   buttons, a rule under the title bar. */
+
+.window {
+  display: flex;
+  flex-direction: column;
+  background: var(--black);
+  color: var(--text);
+  border: var(--border) solid var(--frame);
+  text-decoration: none;
+}
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  padding: 0.3125rem 0.375rem 0.3125rem 0.75rem;
+  background: var(--black);
+  color: var(--white);
+  border-bottom: var(--border) solid var(--frame);
+  font: 400 1rem/1.25 var(--pixel);
+}
+
+.winbuttons { display: flex; flex: none; gap: 0.25rem; }
+.winbuttons > * {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  background: var(--black);
+  color: var(--white);
+  font: 700 1rem/1 var(--pixel);
+  border: var(--border) solid var(--frame);
+  cursor: default;
+}
+html.js .winbuttons button { cursor: pointer; }
+html.js .winbuttons button:active { background: var(--white); color: var(--black); }
+html:not(.js) .winbuttons button { pointer-events: none; }
+.winbuttons svg { width: 0.875rem; height: 0.875rem; }
+.winbuttons .line { stroke-width: 2; }
+
+/* the link part of a window: everything under the title bar */
+.window .body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.viewport { position: relative; background: var(--black); border-bottom: 0.125rem solid var(--line); }
+
+/* a play mark in the middle of a video until it plays */
+.playmark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  transform: translate(-50%, -50%);
+  background: var(--black);
+  color: var(--white);
+  border: var(--border) solid var(--frame);
+  pointer-events: none;
+}
+.playmark svg { width: 1.75rem; height: 1.75rem; }
+.playmark .line { stroke-width: 0.1875rem; vector-effect: non-scaling-stroke; }
+.viewport.playing .playmark { display: none; }
+
+/* the resize grip: the window's bottom-right corner is cut off, and the cut
+   edge (drawn in the frame colour, as thick as the border) is the grip */
+:root { --cut: 1.25rem; }
+html.can-drag .window.has-grip:not(.maximised):not(.minimised) {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%);
+}
+.grip {
+  position: absolute;
+  right: calc(-1 * var(--border));
+  bottom: calc(-1 * var(--border));
+  z-index: 2;
+  width: var(--cut);
+  height: var(--cut);
+  color: var(--frame);
+  cursor: nwse-resize;
+  touch-action: none;
+}
+.grip svg { display: block; width: 100%; height: 100%; }
+.window.maximised .grip, .window.minimised .grip,
+html:not(.can-drag) .grip { display: none; }   /* only where windows can be dragged: a mouse on a wide screen */
+.titlebar .title { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+/* text windows scroll inside once resized smaller than their text */
+.window.sized .paper, .window.sized .files { flex: 1 1 auto; min-height: 0; overflow: auto; }
+.viewport video, .viewport img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+
+/* under the picture: one plain sentence, then how to open it. With a mouse
+   and the script, this moves into a tooltip that follows the pointer. */
+.tile .about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem 0.9rem;
+  text-align: center;
+}
+
+.tile p { max-width: 60ch; margin: 0; color: var(--text); line-height: 1.5; }
+
+.tile .about::after { content: "Click to open the project"; color: var(--dim); }
+@media (pointer: coarse) { .tile .about::after { content: "Tap to open the project"; } }
+@media (pointer: fine) {
+  /* hidden from sight but still read by screen readers, since the tooltip is mouse-only */
+  html.js .tile .about {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  html.js .tile .body[href] { cursor: pointer; }
+}
+
+/* the tooltip: a small window of its own */
+.tooltip {
+  position: fixed;
+  z-index: 400;
+  max-width: 24rem;
+  padding: 0.625rem 0.875rem;
+  background: var(--black);
+  color: var(--text);
+  border: var(--border) solid var(--frame);
+  line-height: 1.5;
+  pointer-events: none;
+}
+.tooltip[hidden] { display: none; }
+.tooltip .cue { display: block; margin-top: 0.5rem; color: var(--dim); }
+
+/* a folder window: a plain list of links */
+.files { margin: 0; padding: 0.375rem; list-style: none; }
+.files a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.625rem;
+  color: var(--white);
+  text-decoration: none;
+  line-height: 1.4;
+}
+.files svg { flex: none; width: 1.5rem; height: 1.5rem; }
+.files a:hover, .files a:focus-visible { background: var(--white); color: var(--black); outline: none; }
+
+/* a Notepad window: a dim menu row, then plain text on black */
+.padmenu {
+  display: flex;
+  gap: 1.25rem;
+  padding: 0.125rem 0.75rem;
+  color: var(--dim);
+  border-bottom: 0.125rem solid var(--line);
+}
+.paper { padding: 0.9rem 1.1rem 1rem; color: var(--text); line-height: 1.6; }
+.paper p { margin: 0 0 1rem; }
+.paper p:last-child { margin-bottom: 0; }
+.paper strong { color: var(--white); }
+.contacts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0.3rem 1.5rem; margin: 0; }
+.contacts dt { color: var(--dim); }
+.contacts dd { margin: 0; overflow-wrap: anywhere; }
+.window.minimised .padmenu, .window.minimised .paper { display: none; }
+
+/* ---------- Project pages ---------- */
+
+.page {
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) var(--gutter) 3rem;
+}
+
+.page h1 {
+  margin: 0 0 0.75rem;
+  color: var(--white);
+  font-size: 3rem;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.page .standfirst { margin: 0 0 1.5rem; color: var(--dim); }
+
+.page figure { margin: 0 0 1.5rem; }
+.page figure .window { margin-bottom: 0.4rem; }
+.page figure .viewport { border-bottom: 0; }
+.page figcaption { margin-top: 0.4rem; color: var(--dim); }
+
+.facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.35rem 1.5rem;
+  margin: 0 0 2.5rem;
+  padding: 1rem 1.1rem;
+  border: var(--border) solid var(--frame);
+}
+
+.facts dt { color: var(--white); font-weight: 700; }
+.facts dd { margin: 0; }
+
+.page h2 { margin: 3rem 0 0.75rem; color: var(--white); font-size: 2rem; line-height: 1.25; font-weight: 400; }
+
+.problem { padding-top: 1.25rem; border-top: 1px solid var(--line); margin-top: 1.5rem; }
+.problem h3 { margin: 0 0 0.6rem; color: var(--white); font-size: 1.5rem; line-height: 1.35; font-weight: 400; }
+.problem p { margin: 0 0 0.9rem; }
+.problem strong { color: var(--white); }
+
+/* the Notes page, built from the files in Media/notes */
+.note { padding-top: 1.25rem; border-top: 1px solid var(--line); margin-top: 1.5rem; }
+.note h3 { margin: 0 0 0.6rem; color: var(--white); font-size: 1.5rem; line-height: 1.35; font-weight: 400; }
+.note p, .note-intro p { margin: 0 0 0.9rem; }
+.note strong, .note-intro strong { color: var(--white); }
+.note img, .note video { margin: 0 0 1rem; border: var(--border) solid var(--frame); }
+.loadfail { color: var(--dim); }
+.paper a { overflow-wrap: anywhere; }
+
+/* code stays in a real code face: pixel type makes braces and symbols hard to read */
+pre {
+  margin: 0 0 1rem;
+  padding: 1rem;
+  overflow-x: auto;
+  background: var(--black);
+  color: var(--text);
+  border: 0.125rem solid var(--line);
+  font: 0.875rem/1.55 var(--code);
+  -webkit-font-smoothing: auto;
+}
+
+code { font-family: var(--code); font-size: 0.9em; color: var(--white); -webkit-font-smoothing: auto; }
+
+.repo { margin-top: 2.5rem; }
+
+.foot {
+  padding: 1.5rem var(--gutter) 2.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--dim);
+}
+
+.foot ul { display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; margin: 0; padding: 0; list-style: none; }
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 760px) {
+  :root { --dock-pad: 0.25rem; }
+  .bar { position: static; }
+  .bar .clock .date { display: none; }
+  .work { grid-template-columns: minmax(0, 1fr); }
+  .facts { grid-template-columns: 1fr; }
+  .facts dd { margin-bottom: 0.5rem; }
+  .page h1 { font-size: 2rem; }
+  .page h2 { font-size: 1.5rem; }
+  .problem h3, .note h3 { font-size: 1rem; font-weight: 700; }
+}
+
+/* ---------- Desktop behaviour (only with desktop.js) ---------- */
+
+html.js .titlebar { user-select: none; }
+html.js.can-drag .desk .titlebar { cursor: move; }
+html.js .window { position: relative; }
+
+/* minimised: only the title bar is left */
+.window.minimised .body,
+.window.minimised .viewport,
+.window.minimised .files { display: none; }
+.window.minimised .titlebar { border-bottom: 0; }
+
+/* maximised: the window fills the screen above the dock */
+.window.maximised {
+  position: fixed !important;
+  inset: var(--bar) var(--edge) calc(var(--dock) + var(--edge) + var(--gap)) var(--edge) !important;
+  z-index: 100 !important;
+  width: auto !important;
+  transform: none !important;
+  height: auto !important;
+}
+.window.maximised .body { display: flex; flex-direction: column; }
+.window.maximised .viewport { flex: 1 1 auto; min-height: 0; display: block; }
+.window.maximised .viewport video,
+.window.maximised .viewport img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: contain; }
+
+/* ---------- The home page as a desktop ----------
+   One screen, no scrolling. Icons down the left; windows open over the
+   desktop when an icon is clicked. */
+
+html.desktop-home body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  padding-bottom: 0 !important;
+}
+html.desktop-home .bar { position: static; flex: none; }
+
+html.desktop-home .desk {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-bottom: calc(var(--dock) + var(--edge) + var(--gap));
+}
+
+/* icons snap to a fixed grid, filling each column top to bottom before
+   starting the next, as Windows arranges a desktop */
+html.desktop-home .icons {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--edge);
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(auto-fill, 6.25rem);
+  grid-auto-columns: 7rem;
+  gap: 0.25rem 0.5rem;
+  align-content: start;
+  justify-items: center;
+  padding: 0;
+}
+
+html.desktop-home .work {
+  display: block;
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  pointer-events: none;   /* clicks between windows reach the icons */
+}
+html.desktop-home .work .window { position: absolute; pointer-events: auto; }
+html.desktop-home .window.closed { display: none; }
+
+@media (max-width: 760px) {
+  /* a phone home screen: a grid of icons with about.txt under it like a
+     widget; every other window opens full screen */
+  html.desktop-home .desk { overflow-y: auto; }
+  html.desktop-home .icons {
+    position: static;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-flow: row;
+    gap: 0.75rem 0.25rem;
+    padding: 1.25rem var(--gutter) 0;
+  }
+  html.desktop-home .icon { width: auto; }
+  html.desktop-home .icon span { max-width: 100%; }   /* phones have no hover to reveal a cut name */
+  html.desktop-home .work { position: static; }
+  html.desktop-home .window.inline { position: static; margin: 1.25rem var(--gutter) 0; }
+  html.desktop-home .window.inline .winbuttons { display: none; }
+  .contacts { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .contacts dd { margin-bottom: 0.6rem; }
+  html.desktop-home .winbuttons [data-action="minimise"],
+  html.desktop-home .winbuttons [data-action="maximise"] { display: none; }
+}
+
+/* ---------- Dock (bottom centre) ---------- */
+
+html.has-dock body { padding-bottom: calc(var(--dock) + 2 * var(--edge)); }
+
+.dock {
+  position: fixed;
+  left: 50%;
+  bottom: var(--edge);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: var(--dock-pad) 0.5rem;
+  transform: translateX(-50%);
+  background: var(--black);
+  border: var(--border) solid var(--frame);
+  transition: transform 0.2s ease-out;
+}
+/* on phones the dock slides away while scrolling down */
+.dock.away { transform: translate(-50%, calc(100% + 1rem)); }
+
+/* no boxes: the icons themselves fill the space the boxes took */
+.dock > button, .dock > a {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--dock-button);
+  height: var(--dock-button);
+  padding: 0;
+  background: var(--black);
+  color: var(--white);
+  border: 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+.dock svg { display: block; width: var(--dock-button); height: var(--dock-button); transition: transform 0.12s ease-out; }
+.dock .line, .dock .logo rect { stroke-width: 0.1875rem; vector-effect: non-scaling-stroke; }
+.dock .logo rect { fill: var(--black); stroke: var(--white); }
+.dock > a:hover svg, .dock > button:hover svg { transform: translateY(-4px); }
+.dock > button[aria-expanded="true"] { background: var(--white); }
+.dock > button[aria-expanded="true"] .logo rect { fill: var(--white); stroke: var(--black); }
+
+/* the name shows above an icon while it is pointed at or focused */
+.dock .tip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 1rem);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.25rem 0.625rem;
+  background: var(--black);
+  color: var(--white);
+  border: var(--border) solid var(--frame);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.dock > :hover .tip, .dock > :focus-visible .tip { display: block; }
+.dock > button[aria-expanded="true"] .tip { display: none; }
+
+@media (max-width: 760px) {
+  .dock { gap: 0.5rem; }
+  .dock .line, .dock .logo rect { stroke-width: 0.2812rem; }
+  .dock .tip { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto; }
+  .dock, .dock svg { transition: none; }
+}
+
+/* ---------- Start menu ---------- */
+
+.startmenu {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--dock) + var(--edge) + 0.5rem);
+  z-index: 210;
+  min-width: 17.5rem;
+  padding: 0.25rem;
+  transform: translateX(-50%);
+  background: var(--black);
+  border: var(--border) solid var(--frame);
+  font: 400 1rem/1.25 var(--pixel);
+}
+.startmenu[hidden] { display: none; }
+.startmenu ul { margin: 0; padding: 0; list-style: none; }
+.startmenu li { position: relative; }
+.startmenu a,
+.startmenu button {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  background: var(--black);
+  color: var(--white);
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+}
+.startmenu a:hover, .startmenu a:focus-visible,
+.startmenu button:hover, .startmenu button:focus-visible,
+.startmenu button[aria-expanded="true"] { background: var(--white); color: var(--black); outline: none; }
+.startmenu hr { margin: 0.25rem 0.125rem; border: 0; border-top: 1px solid var(--line); }
+
+/* the Earlier work flyout opens to the right of its item */
+.startmenu .submenu {
+  position: absolute;
+  left: 100%;
+  bottom: -7px;
+  min-width: 23.75rem;
+  padding: 0.25rem;
+  background: var(--black);
+  border: var(--border) solid var(--frame);
+}
+.startmenu .submenu[hidden] { display: none; }
+
+@media (max-width: 760px) {
+  .startmenu { width: calc(100vw - 1.5rem); }
+  .startmenu .submenu { position: static; min-width: 0; border: 0; border-top: 1px solid var(--line); padding-left: 1rem; }
+}

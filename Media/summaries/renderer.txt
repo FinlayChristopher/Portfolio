@@ -1,0 +1,1 @@
+Per-pixel Phong lighting, textures, any number of randomly placed objects, and a window that resizes live. C++, HLSL and DirectX 11.

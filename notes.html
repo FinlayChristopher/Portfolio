@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Notes - Finlay Harris</title>
+  <meta name="description" content="How I keep what I learn one query away while I build, and the bugs I've tracked down along the way.">
+  <!-- ICON AND LINK PREVIEW (the picture shown when the link is pasted into LinkedIn, Discord or an email) -->
+  <link rel="icon" href="Media/favicon-32.png" type="image/png">
+  <link rel="apple-touch-icon" href="Media/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Notes - Finlay Harris">
+  <meta property="og:description" content="How I keep what I learn one query away while I build, and the bugs I've tracked down along the way.">
+  <meta property="og:url" content="https://finlaychristopher.github.io/Portfolio/notes.html">
+  <meta property="og:image" content="https://finlaychristopher.github.io/Portfolio/Media/preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="Fonts/silkscreen-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script src="Lib/marked.min.js" defer></script>
+  <script src="content.js" defer></script>
+  <script src="desktop.js" defer></script>
+</head>
+<body>
+
+  <!-- MENU BAR: the same block on every page. Change it in all four files.
+       FIN. is a second Home button.
+       The date and time are added on the right by desktop.js. -->
+  <header class="bar">
+    <a class="fin" href="index.html" aria-label="Home">FIN.</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="notes.html" aria-current="page">Notes</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="Media/cv.pdf">CV</a></li>
+        <li><a href="https://github.com/FinlayChristopher">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/finlay-harris-50378238a/">LinkedIn</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- The words on this page come from the files in Media/notes, in the order
+       Media/notes/order.txt gives (content.js reads them). Edit those, not this. -->
+  <main class="page" data-list="Media/notes/order.txt">
+    <noscript><p>This page reads its notes from files and needs JavaScript. They're in <a href="https://github.com/FinlayChristopher/Portfolio/tree/main/Media/notes">Media/notes</a> on GitHub.</p></noscript>
+  </main>
+
+  <footer class="foot">
+    <ul>
+      <li><a href="mailto:finlaych1@protonmail.com">finlaych1@protonmail.com</a></li>
+      <li><a href="https://github.com/FinlayChristopher">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/finlay-harris-50378238a/">LinkedIn</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>
