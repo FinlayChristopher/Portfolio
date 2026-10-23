@@ -148,7 +148,7 @@ html.has-dock .bar nav { display: none; }
   flex-direction: column;
   align-items: center;
   gap: 0.375rem;
-  width: 7rem;
+  width: 8rem;
   padding: 0.25rem 0;
   color: var(--white);
   text-align: center;
@@ -157,17 +157,20 @@ html.has-dock .bar nav { display: none; }
 }
 .icon svg { width: var(--icon); height: var(--icon); }
 .icon .line { stroke-width: 0.1875rem; vector-effect: non-scaling-stroke; }   /* the dock's weight */
-/* labels may run about 10% past the icon on each side, then end in ... */
+/* labels wrap like Windows: across the icon's grid cell, up to two lines, then
+   end in ... ; a selected icon shows its whole name */
 .icon span {
-  max-width: calc(var(--icon) * 1.2 + 0.375rem);   /* + the label's own padding */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  max-width: 100%;
   padding: 1px 0.1875rem;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  overflow-wrap: anywhere;   /* one long word breaks rather than spilling out */
 }
-/* a selected desktop icon: the label inverts and shows in full, as on Windows */
 .icon:hover, .icon:focus-visible { z-index: 1; }
-.icon:hover span, .icon:focus-visible span { max-width: none; overflow: visible; background: var(--white); color: var(--black); }
+.icon:hover span, .icon:focus-visible span { -webkit-line-clamp: unset; line-clamp: none; overflow: visible; background: var(--white); color: var(--black); }
 .icon:focus-visible { outline: none; }
 
 
@@ -500,8 +503,8 @@ html.desktop-home .icons {
   left: var(--edge);
   display: grid;
   grid-auto-flow: column;
-  grid-template-rows: repeat(auto-fill, 6.25rem);
-  grid-auto-columns: 7rem;
+  grid-template-rows: repeat(auto-fill, 7.5rem);   /* room for a two-line name */
+  grid-auto-columns: 8rem;
   gap: 0.25rem 0.5rem;
   align-content: start;
   justify-items: center;
@@ -531,7 +534,7 @@ html.desktop-home .window.closed { display: none; }
     padding: 1.25rem var(--gutter) 0;
   }
   html.desktop-home .icon { width: auto; }
-  html.desktop-home .icon span { max-width: 100%; }   /* phones have no hover to reveal a cut name */
+  html.desktop-home .icon span { font-size: 0.875rem; }   /* "Multiplayer" fits a third of a phone without breaking */
   html.desktop-home .work { position: static; }
   html.desktop-home .window.inline { position: static; margin: 1.25rem var(--gutter) 0; }
   html.desktop-home .window.inline .winbuttons { display: none; }
@@ -662,4 +665,8 @@ html.has-dock body { padding-bottom: calc(var(--dock) + 2 * var(--edge)); }
 @media (max-width: 760px) {
   .startmenu { width: calc(100vw - 1.5rem); }
   .startmenu .submenu { position: static; min-width: 0; border: 0; border-top: 1px solid var(--line); padding-left: 1rem; }
+}
+
+@media (max-width: 380px) {
+  html.desktop-home .icon span { font-size: 0.75rem; }   /* the narrowest phones */
 }

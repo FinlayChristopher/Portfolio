@@ -1,0 +1,12 @@
+#!/bin/sh
+# Before each commit: make or refresh the poster for any video in Media whose
+# poster is missing or out of date, and add it to the commit. Never blocks a commit.
+# Turned on by preview.bat (git config core.hooksPath .githooks).
+for py in py python python3; do
+  if command -v "$py" >/dev/null 2>&1; then
+    "$py" tools/make-posters.py --stage
+    exit 0
+  fi
+done
+echo "pre-commit: Python not found, so video posters weren't checked."
+exit 0

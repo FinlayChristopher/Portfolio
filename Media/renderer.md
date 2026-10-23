@@ -17,7 +17,7 @@ A renderer I'm building in C++ to learn the graphics pipeline from the bottom up
 
 > **Built with:** C++, HLSL, DirectX 11, ImGui
 > **Status:** In progress, scoped to 30 November 2026
-> **Next:** Procedural generation, then shadow mapping
+> **Next:** An OBJ model loader, then shadow mapping, then procedural generation
 
 ## Problems I solved
 

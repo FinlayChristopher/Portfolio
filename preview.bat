@@ -12,6 +12,11 @@ if not defined PY (
   pause
   exit /b 1
 )
+rem turn on the commit hook (makes video posters before each commit), then
+rem bring every video's poster up to date
+git config core.hooksPath .githooks 2>nul
+%PY% tools\make-posters.py
+echo.
 echo Serving the portfolio at http://localhost:8000/
 echo Keep this window open while you look at the site. Close it to stop.
 start "" cmd /c "timeout /t 1 >nul & start http://localhost:8000/"
