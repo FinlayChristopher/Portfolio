@@ -1,6 +1,5 @@
-Finlay Harris
-Games Programming student, University of Staffordshire
+Finlay Harris: Games Programming student, University of Staffordshire
 
-I want to understand graphics all the way down, from the maths to the hardware, so I'm building my own DirectX 11 renderer in C++ and taking apart how each piece works. I'm looking for a graphics programming placement for 2027-28.
+I want to understand computers all the way down, from the maths to the hardware, so I'm building my own DirectX 11 renderer in C++ and taking apart how each piece works. I'm looking for a graphics programming placement for 2027-28.
 
 I used AI as an assistant in building parts of this site. This was an experiment. I'm rewriting the AI parts and will contrast before and after.

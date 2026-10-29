@@ -1,17 +1,6 @@
-<!--
-  The renderer page. How this file becomes the page:
-  - the first paragraph after the # title shows as the grey line under it
-  - a picture whose file is a video becomes a window: the [text] is the window's
-    title, and "text in quotes" after the file name is the caption under it
-  - a quote block (lines starting with >) becomes the facts box; start each line
-    with **Label:**
-  - each ### heading starts a new problem block
-  Files are found relative to this one, so videos next to it need just their name.
--->
-
 # DirectX 11 renderer
 
-A renderer I'm building in C++ to learn the graphics pipeline from the bottom up, one feature at a time.
+A renderer I'm building in C++ to learn the graphics pipeline from the bottom up and explore advanced features.
 
 ![Real-Time Render - DirectX 11](Cubes.mp4 "Textured cubes lit per pixel. The panel is ImGui, reading live values from the renderer.")
 
@@ -71,7 +60,7 @@ for (size_t i = 0; i < objectCount; i++)
 
 ### Resizing the window
 
-**Problem:** maximising the window stretched the old picture, and the ImGui panel stopped responding to clicks: ImGui read the real window size while the picture was drawn at the old one.
+**Problem:** Adjusting window size in real time caused jittering and a paused static image that appear stretched. The ImGui panel stopped responding to clicks as it's real location was hidden by an inaccurate view of the window.
 
 **What I did:** on every `WM_SIZE`, release the old views, resize the swap chain's buffers, make new views and a matching depth buffer, then update the viewport and the projection's aspect ratio. A timer keeps frames coming while the window edge is held.
 
@@ -95,6 +84,7 @@ void DX11Framework::Resize(UINT width, UINT height)
 }
 ```
 
-**Bugs on the way:** my first aspect ratio divided two whole numbers, so 1920 / 1080 came out as 1 and the scene was squashed. Then, while dragging the window edge, memory rose from about 70 MB to about 180 MB and fell back when I stopped. Direct3D frees released buffers later rather than at once, and every step of a drag made a new full-size set. I added `Flush()` before the resize and I'm measuring how much it helps.
+**Bugs on the way:** My first aspect ratio divided two whole numbers, so 1920 / 1080 came out as 1 and the scene was squashed. Then, while dragging the window edge, memory rose from ~70 MB to ~180 MB and fell back when not actively resizing. Direct3D frees released buffers later rather than at once, and every step of a drag made a new full-size set. I added `Flush()` before the resize and I'm measuring how much it helps.
 
-[Source on GitHub](https://github.com/FinlayChristopher/Real-Time-Rendering-Framework)
+
+[Source is on GitHub and will be public when the project ends](https://github.com/FinlayChristopher/Real-Time-Rendering-Framework)
